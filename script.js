@@ -1,5 +1,7 @@
 const screenDiv = document.querySelector("#screen")
 const buttons = document.querySelector("#buttons")
+const evalStack = []
+let canReplace = true
 buttons.addEventListener('click', e => {
     switch(e.target.value) {
         case undefined:
@@ -7,7 +9,7 @@ buttons.addEventListener('click', e => {
         case "A/C":
             break;
         case "=":
-            operate();
+            evaluateEquation()
             break;
         case "+/-":
             break;
@@ -17,15 +19,22 @@ buttons.addEventListener('click', e => {
         case "-":
         case "*":
         case "/":
+            pushOperator(e.target.value)
             break;
         case ".":
             if (screenDiv.textContent.includes(".")) {
                 break;
             }
         default:
-            if (screenDiv.textContent.length < 9) {
-                screenDiv.textContent += e.target.value;
+            if (canReplace) {
+                screenDiv.textContent = e.target.value
+                canReplace = false
             }
+            else {
+                if (screenDiv.textContent.length < 9) {
+                    screenDiv.textContent += e.target.value;
+                }
+            }   
     }
 })
 
@@ -51,4 +60,21 @@ function operate(operand2, operator, operand1) {
         case '/':
             return divide(operand1, operand2)
     }
+}
+
+function pushOperator(operator) {
+    if (evalStack.length === 2) {
+        evalStack[1] = operator
+    }
+    else {
+        evalStack.push(Number(screenDiv.textContent))
+        evalStack.push(operator)
+    }
+    canReplace = true
+}
+
+function evaluateEquation() {
+    evalStack.push(Number(screenDiv.textContent))
+    screenDiv.textContent = String(operate(evalStack.pop(), evalStack.pop(), evalStack.pop()))
+    canReplace = true
 }
