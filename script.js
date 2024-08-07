@@ -6,8 +6,11 @@ buttons.addEventListener('click', e => {
     switch(e.target.value) {
         case undefined:
             break;
-        case "A/C":
-            break;
+        case "clear":
+            while (evalStack.length > 0) {
+                evalStack.pop()
+            }
+            screenDiv.textContent = 0
         case "=":
             evaluateEquation()
             break;
