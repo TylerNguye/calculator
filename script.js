@@ -1,7 +1,12 @@
 const add = (a, b) => a + b;
 const subtract = (a, b) => a - b;
 const multiply = (a, b) => a * b;
-const divide = (a, b) => a / b;
+const divide = (a, b) => {
+    if (b === 0) {
+        return "Zero Points"
+    }
+    return a / b
+};
 
 function operate(operand2, operator, operand1) {
     switch(operator) {
