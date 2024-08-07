@@ -10,7 +10,8 @@ buttons.addEventListener('click', e => {
             while (evalStack.length > 0) {
                 evalStack.pop()
             }
-            screenDiv.textContent = 0
+            screenDiv.textContent = "0"
+            break;
         case "=":
             evaluateEquation()
             break;
