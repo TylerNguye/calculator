@@ -1,0 +1,12 @@
+body {
+    display: flex;
+    justify-content: center;
+}
+
+#screen {
+    background-color: #ccffee;
+    font-size: 25px;
+    font-family: "Courier New", Courier, monospace;
+    padding: 0 4px;
+    text-align: end;
+}
