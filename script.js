@@ -1,3 +1,33 @@
+const screenDiv = document.querySelector("#screen")
+const buttons = document.querySelector("#buttons")
+buttons.addEventListener('click', e => {
+    switch(e.target.value) {
+        case undefined:
+            break;
+        case "A/C":
+            break;
+        case "=":
+            operate();
+            break;
+        case "+/-":
+            break;
+        case "%":
+            break;
+        case "+":
+        case "-":
+        case "*":
+        case "/":
+            break;
+        case ".":
+            if ("." > 1) {
+                break;
+            }
+        default:
+            screenDiv.textContent += e.target.value;
+    }
+})
+
+
 const add = (a, b) => a + b;
 const subtract = (a, b) => a - b;
 const multiply = (a, b) => a * b;
