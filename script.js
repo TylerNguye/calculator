@@ -19,11 +19,13 @@ buttons.addEventListener('click', e => {
         case "/":
             break;
         case ".":
-            if ("." > 1) {
+            if (screenDiv.textContent.includes(".")) {
                 break;
             }
         default:
-            screenDiv.textContent += e.target.value;
+            if (screenDiv.textContent.length < 9) {
+                screenDiv.textContent += e.target.value;
+            }
     }
 })
 
