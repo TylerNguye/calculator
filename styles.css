@@ -3,6 +3,13 @@ body {
     justify-content: center;
 }
 
+#calculator {
+    background-color: #555555;
+    padding: 8px;
+    border-radius: 5px;
+    border: 2px solid black;
+}
+
 #screen {
     background-color: #ccffee;
     font-size: 25px;
