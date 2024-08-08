@@ -12,6 +12,7 @@ buttons.addEventListener('click', e => {
                 evalStack.pop()
             }
             screenDiv.textContent = "0"
+            canReplace = true
             break;
         case "=":
             evaluateEquation()
@@ -26,8 +27,10 @@ buttons.addEventListener('click', e => {
                 }
             }
             break;
-        case "%":
-            screenDiv.textContent = String(Number(ScreenDiv.textContent) / 100)
+        case "percent":
+            const numWholeDigits = String(Number(screenDiv.textContent % 1)).length
+            const percentedNum = Number((Number(screenDiv.textContent) / 100).toPrecision(MAX_DIGITS - numWholeDigits - 1))
+            screenDiv.textContent = String(percentedNum)
         case "+":
         case "-":
         case "*":
