@@ -3,6 +3,7 @@ const buttons = document.querySelector("#buttons")
 const evalStack = []
 let canReplace = true
 const MAX_DIGITS = 12;
+const DIVIDEBYZEROERR = "Zero Points"
 
 buttons.addEventListener('click', e => {
     switch(e.target.value) {
@@ -66,7 +67,8 @@ const subtract = (a, b) => a - b;
 const multiply = (a, b) => preciseNum(a * b);
 const divide = (a, b) => {
     if (b === 0) {
-        return "Zero Points"
+        canReplace = true
+        return DIVIDEBYZEROERR
     }
     return preciseNum(a / b)
 };
@@ -85,6 +87,9 @@ function operate(operand2, operator, operand1) {
 }
 
 function pushOperator(operator) {
+    if (screenDiv.textContent === DIVIDEBYZEROERR) {
+        return;
+    }
     if (evalStack.length === 2) {
         evalStack.push(Number(screenDiv.textContent))
         screenDiv.textContent = String(operate(evalStack.pop(), evalStack.pop(), evalStack.pop()))
