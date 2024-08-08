@@ -66,13 +66,13 @@ function displayValueOnScreen(value) {
             pushOperator(value)
             break;
         case ".":
-            if (screenDiv.textContent.includes(".")) {
+            if (screenDiv.textContent.includes(".") && evalStack.length < 2) {
                 break;
             }
             screenDiv.textContent = Number(screenDiv.textContent).toString()
         default:
             if (canReplace) {
-                if (value === "." && screenDiv.textContent === "0") {
+                if (value === ".") {
                     screenDiv.textContent = "0."
                 }
                 else {
