@@ -27,7 +27,7 @@ buttons.addEventListener('click', e => {
             }
             break;
         case "%":
-            break;
+            screenDiv.textContent = String(Number(ScreenDiv.textContent) / 100)
         case "+":
         case "-":
         case "*":
