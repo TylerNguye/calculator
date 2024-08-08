@@ -3,6 +3,7 @@ const buttons = document.querySelector("#buttons")
 const evalStack = []
 let canReplace = true
 buttons.addEventListener('click', e => {
+    const MAX_DIGITS = 12;
     switch(e.target.value) {
         case undefined:
             break;
@@ -15,7 +16,15 @@ buttons.addEventListener('click', e => {
         case "=":
             evaluateEquation()
             break;
-        case "+/-":
+        case "sign":
+            if (screenDiv.textContent !== "0") {
+                if (screenDiv.textContent.startsWith("-")) {
+                    screenDiv.textContent = screenDiv.textContent.substring(1)
+                }
+                else {
+                    screenDiv.textContent = "-" + screenDiv.textContent;
+                }
+            }
             break;
         case "%":
             break;
@@ -35,7 +44,7 @@ buttons.addEventListener('click', e => {
                 canReplace = false
             }
             else {
-                if (screenDiv.textContent.length < 9) {
+                if (screenDiv.textContent.length < MAX_DIGITS) {
                     screenDiv.textContent += e.target.value;
                 }
             }   
