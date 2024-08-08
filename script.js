@@ -78,6 +78,9 @@ function operate(operand2, operator, operand1) {
 
 function pushOperator(operator) {
     if (evalStack.length === 2) {
+        evalStack.push(Number(screenDiv.textContent))
+        screenDiv.textContent = String(operate(evalStack.pop(), evalStack.pop(), evalStack.pop()))
+        evalStack.push(Number(screenDiv.textContent))
         evalStack[1] = operator
     }
     else {
