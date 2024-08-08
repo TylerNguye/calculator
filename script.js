@@ -38,6 +38,7 @@ buttons.addEventListener('click', e => {
             if (screenDiv.textContent.includes(".")) {
                 break;
             }
+            screenDiv.textContent = Number(screenDiv.textContent).toString()
         default:
             if (canReplace) {
                 screenDiv.textContent = e.target.value
