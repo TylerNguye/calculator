@@ -71,14 +71,17 @@ function pushOperator(operator) {
         evalStack[1] = operator
     }
     else {
-        evalStack.push(Number(screenDiv.textContent))
+        evalStack[0] = (Number(screenDiv.textContent))
         evalStack.push(operator)
     }
     canReplace = true
 }
 
 function evaluateEquation() {
-    evalStack.push(Number(screenDiv.textContent))
-    screenDiv.textContent = String(operate(evalStack.pop(), evalStack.pop(), evalStack.pop()))
-    canReplace = true
+    if (evalStack.length === 2) {
+        evalStack.push(Number(screenDiv.textContent))
+        screenDiv.textContent = String(operate(evalStack.pop(), evalStack.pop(), evalStack.pop()))
+        evalStack.push(Number(screenDiv.textContent))
+        canReplace = true
+    }
 }
