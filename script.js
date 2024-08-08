@@ -28,9 +28,9 @@ buttons.addEventListener('click', e => {
             }
             break;
         case "percent":
-            const numWholeDigits = String(Number(screenDiv.textContent % 1)).length
-            const percentedNum = Number((Number(screenDiv.textContent) / 100).toPrecision(MAX_DIGITS - numWholeDigits - 1))
-            screenDiv.textContent = String(percentedNum)
+            const numWholeDigits = String(+screenDiv.textContent % 1).length
+            screenDiv.textContent = (+screenDiv.textContent / 10).toPrecision(MAX_DIGITS - numWholeDigits - 1)
+            break;
         case "+":
         case "-":
         case "*":
