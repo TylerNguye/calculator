@@ -34,8 +34,16 @@ button {
     flex: 1;
 }
 
+button:active {
+    background-color: #aaeeff;
+}
+
 .operation {
     background-color: #ddbbaa;
+}
+
+.operation:active {
+    background-color: #ffddbb;
 }
 
 #zero {
