@@ -30,7 +30,7 @@ buttons.addEventListener('click', e => {
             }
             break;
         case "percent":
-            screenDiv.textContent = preciseNum(+screenDiv.textContent / 10)
+            screenDiv.textContent = preciseNum(+screenDiv.textContent / 100)
             break;
         case "+":
         case "-":
