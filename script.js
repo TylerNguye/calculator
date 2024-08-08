@@ -2,8 +2,9 @@ const screenDiv = document.querySelector("#screen")
 const buttons = document.querySelector("#buttons")
 const evalStack = []
 let canReplace = true
+const MAX_DIGITS = 12;
+
 buttons.addEventListener('click', e => {
-    const MAX_DIGITS = 12;
     switch(e.target.value) {
         case undefined:
             break;
@@ -28,8 +29,7 @@ buttons.addEventListener('click', e => {
             }
             break;
         case "percent":
-            const numWholeDigits = String(+screenDiv.textContent % 1).length
-            screenDiv.textContent = (+screenDiv.textContent / 10).toPrecision(MAX_DIGITS - numWholeDigits - 1)
+            screenDiv.textContent = preciseNum(+screenDiv.textContent / 10)
             break;
         case "+":
         case "-":
@@ -63,12 +63,12 @@ buttons.addEventListener('click', e => {
 
 const add = (a, b) => a + b;
 const subtract = (a, b) => a - b;
-const multiply = (a, b) => a * b;
+const multiply = (a, b) => preciseNum(a * b);
 const divide = (a, b) => {
     if (b === 0) {
         return "Zero Points"
     }
-    return a / b
+    return preciseNum(a / b)
 };
 
 function operate(operand2, operator, operand1) {
@@ -105,4 +105,9 @@ function evaluateEquation() {
         evalStack.push(Number(screenDiv.textContent))
         canReplace = true
     }
+}
+
+function preciseNum(num) {
+    const precisionDigits = MAX_DIGITS - String(Math.round(num)).length - 1
+    return Number(num.toPrecision(precisionDigits))
 }
