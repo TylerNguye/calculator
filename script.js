@@ -5,8 +5,35 @@ let canReplace = true
 const MAX_DIGITS = 12;
 const DIVIDEBYZEROERR = "Zero Points"
 
+document.addEventListener('keydown', e => {
+    const validInputs = /^[\-/*+\.=0-9cs%]$/
+    let requestValue = e.key
+    if (requestValue === "Enter") {
+        requestValue = "="
+    }
+    if (!validInputs.test(requestValue)) {
+        return
+    }
+    switch (e.key) {
+        case "c":
+            requestValue = "clear"
+            break;
+        case "s":
+            requestValue = "sign"
+            break;
+        case "%":
+            requestValue = "percent"
+            break;
+    }
+    displayValueOnScreen(requestValue)
+})
+
 buttons.addEventListener('click', e => {
-    switch(e.target.value) {
+    displayValueOnScreen(e.target.value)
+})
+
+function displayValueOnScreen(value) {
+    switch(value) {
         case undefined:
             break;
         case "clear":
@@ -36,7 +63,7 @@ buttons.addEventListener('click', e => {
         case "-":
         case "*":
         case "/":
-            pushOperator(e.target.value)
+            pushOperator(value)
             break;
         case ".":
             if (screenDiv.textContent.includes(".")) {
@@ -45,21 +72,21 @@ buttons.addEventListener('click', e => {
             screenDiv.textContent = Number(screenDiv.textContent).toString()
         default:
             if (canReplace) {
-                if (e.target.value === "." && screenDiv.textContent === "0") {
+                if (value === "." && screenDiv.textContent === "0") {
                     screenDiv.textContent = "0."
                 }
                 else {
-                    screenDiv.textContent = e.target.value
+                    screenDiv.textContent = value
                 }
                 canReplace = false
             }
             else {
                 if (screenDiv.textContent.length < MAX_DIGITS) {
-                    screenDiv.textContent += e.target.value;
+                    screenDiv.textContent += value;
                 }
             }   
     }
-})
+}
 
 
 const add = (a, b) => a + b;
