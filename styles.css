@@ -4,17 +4,35 @@ body {
 }
 
 #calculator {
+    margin-top: 50px;
     background-color: #555555;
     padding: 8px;
     border-radius: 5px;
     border: 2px solid black;
+    width: 400px;
 }
 
 #screen {
     background-color: #ccffee;
-    font-size: 25px;
+    font-size: 50px;
     font-family: "Courier New", Courier, monospace;
     padding: 0 4px;
     text-align: end;
-    width: 5.5em;
+    width: 392px;
+    margin-bottom: 10px;
+}
+
+.row {
+    display: flex;
+}
+button {
+    padding: 32px 0;
+    border: 1px solid black;
+    background-color: #dddddd;
+    font-size: 32px;
+    flex: 1;
+}
+
+#zero {
+    flex: 2
 }
